@@ -199,8 +199,8 @@ Cats4Lyf App
 
 #message {
   margin-left: 20px;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 /* Products Components */
@@ -281,22 +281,24 @@ Cats4Lyf App
 /* Shopping Cart */
 
 .cart-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 20px;
   min-height: 650px;
   width: 75%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
 }
 
 .cart-items {
-  min-width: 75%;
-  background-color: var(--col-light-grey);
-  border-radius: 2px;
   display: flex;
   justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 25%;
+  min-width: 75%;
+  background-color: var(--col-light-grey);
+  border-radius: 2px;
   margin-right: 20px;
 }
 
@@ -325,7 +327,7 @@ Cats4Lyf App
 
 footer {
   width: 100%;
-  height: 150px;
+  height: 135px;
   padding: 10px 10px;
   background-color: darkblue;
   box-shadow: var(--top-shadow);
@@ -342,5 +344,27 @@ Media Queries
 -------------
 */
 
+@media screen and (max-width: 1308px) {
+  .cart-container {
+    width: 90%;
+    flex-direction: column-reverse;
+  }
+
+  .order-panel {
+    width: 95%;
+    min-width: none;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 697px) {
+  .nav-bar .logo {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 640px) {
+  .product-container {
+    width: 90%;
+  }
 }
