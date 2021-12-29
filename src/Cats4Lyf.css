@@ -1,0 +1,346 @@
+/* 
+-----
+Fonts
+-----
+font-family: 'Roboto', sans-serif;
+font-family: 'Abel', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Nunito Sans', sans-serif;
+font-family: 'Nunito Sans', sans-serif;
+font-family: 'MEOWZA', sans-serif;
+
+*/
+
+@import url("http://fonts.cdnfonts.com/css/meowza");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:ital@1&family=Nunito+Sans&display=swap");
+
+/* 
+-------
+globals
+-------
+*/
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --ff-logo: "MEOWZA", sans-serif;
+  --ff-primary: "Montserrat", sans-serif;
+  --ff-secondary: "Abel", sans-serif;
+  --ff-tertiary: "Nunito Sans", sans-serif;
+  --col-white: white;
+  --col-off-white: #faf9f6;
+  --col-black: black;
+  --col-green: green;
+  --col-red: red;
+  --col-vrylght-grey: #f3f6f7;
+  --col-light-grey: #e7ebef;
+  --col-med-grey: #adb5bd;
+  --col-dar-grey: #687178;
+  --col-charcoal-grey: #41474e;
+  --col-med-blue: mediumblue;
+  --col-orange-red: orangered;
+  --col-med-orange: orange;
+  --col-light-seashell: #fff2eb;
+  --light-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.51);
+  --dark-shadow: 22px 22px 15px -10px rgba(0, 0, 0, 0.66);
+  --inset-shadow: 4px 5px 6px -2px rgba(0, 0, 0, 0.75) inset;
+  --top-shadow: -2px -8px 17px -7px rgba(0, 0, 0, 0.4);
+  --text-shadow: 2px 2px 1px rgba(255, 255, 255, 1);
+  --transition-slow: 1s;
+  --transition-med: 0.75s;
+  --transition-fast: 0.5s;
+  --transition-vfast: 0.25s;
+}
+
+body {
+  font-family: var(--ff-secondary);
+  background-color: var(--col-vrylght-grey);
+  overflow-y: scroll;
+}
+
+/* 
+--------------
+Cats4Lyf App
+--------------
+*/
+
+.app-container {
+  width: 100%;
+}
+
+.spinner {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #0c9726;
+}
+
+.spinner h3 {
+  margin-top: 10px;
+}
+
+/* Header / Nav Bar */
+
+.nav-bar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 100px;
+  background-color: var(--col-green);
+  box-shadow: var(--light-shadow);
+  overflow: none;
+}
+
+.nav-bar .logo {
+  font-family: var(--ff-logo);
+  font-size: 3rem;
+  margin: 0 20px;
+  background-color: var(--col-red);
+  color: yellow;
+  padding: 5px;
+  border: 2px solid var(--col-black);
+  border-radius: 2px;
+  transition: hover 1s;
+  box-shadow: var(--light-shadow);
+}
+
+.nav-bar .logo:hover {
+  cursor: pointer;
+  color: var(--col-white);
+}
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.search-box button {
+  padding: 0.3em 1.2em;
+  border: 1px solid var(--col-black);
+  border-radius: 2em;
+  text-decoration: none;
+  font-family: var(--ff-secondary);
+  font-weight: bold;
+  color: var(--col-white);
+  background-color: var(--col-med-blue);
+  text-align: center;
+  box-shadow: var(--light-shadow);
+}
+
+.search-box button:hover {
+  cursor: pointer;
+  color: var(--col-red);
+}
+
+.breed-select {
+  min-width: 200px;
+  font-family: var(--ff-secondary);
+  font-size: 1em;
+  margin-right: 5px;
+  padding-left: 3px;
+  box-shadow: var(--light-shadow);
+  cursor: pointer;
+}
+
+.search-box #breeds:focus {
+  outline: none;
+}
+
+.nav-links {
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--light-shadow);
+}
+
+.fas {
+  font-size: 2rem;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.fas:hover {
+  cursor: pointer;
+  color: #0c9726;
+}
+
+/* Message Bar */
+
+.msg-container {
+  width: 100%;
+}
+
+#message {
+  margin-left: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+/* Products Components */
+
+.product-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: var(--col-white);
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card-container {
+  background-color: var(--col-off-white);
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--col-med-grey);
+  border-radius: 3px;
+  flex: 1;
+  margin: 10px 10px;
+  box-shadow: var(--light-shadow);
+}
+
+.cat-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--col-off-white);
+}
+
+.cat-img img {
+  width: 270px;
+  height: 170px;
+  border: 1px solid var(--col-dar-grey);
+  border-radius: 2px;
+  box-shadow: var(--light-shadow);
+}
+
+.cat text {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.price-n-prod {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.addrem-container {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.addrem-container button {
+  padding: 3px 10px;
+  background-color: white;
+  color: var(--col-green);
+  border: 1px solid var(--col-med-grey);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: var(--light-shadow);
+}
+
+/* Shopping Cart */
+
+.cart-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-height: 650px;
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.cart-items {
+  min-width: 75%;
+  background-color: var(--col-light-grey);
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-right: 20px;
+}
+
+.order-panel {
+  min-width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  height: 100%;
+  padding: 0 20px;
+  border: 1px solid var(--col-med-grey);
+  border-radius: 5px;
+  box-shadow: var(--light-shadow);
+}
+
+#order-panel-heading {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#order-panel-sub-total {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+footer {
+  width: 100%;
+  height: 150px;
+  padding: 10px 10px;
+  background-color: darkblue;
+  box-shadow: var(--top-shadow);
+  overflow: none;
+}
+
+footer h3 {
+  color: var(--col-white);
+}
+
+/* 
+-------------
+Media Queries
+-------------
+*/
+
+@media screen and (max-width: 640px) {
+}
