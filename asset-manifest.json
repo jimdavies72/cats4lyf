@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cats4lyf/static/css/main.0f480eda.css",
+    "main.js": "/cats4lyf/static/js/main.d6d84ea8.js",
+    "index.html": "/cats4lyf/index.html",
+    "main.0f480eda.css.map": "/cats4lyf/static/css/main.0f480eda.css.map",
+    "main.d6d84ea8.js.map": "/cats4lyf/static/js/main.d6d84ea8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f480eda.css",
+    "static/js/main.d6d84ea8.js"
+  ]
+}
