@@ -66,7 +66,19 @@ const Cats4Lyf = () => {
     handleFetch(numProducts, selectedBreed);
   };
 
-  //TODO: Make Banner Text dynamic between products and cart. Not sure how I can do this?
+  const setBannerHandler = (location) => {
+    let bannerText = "";
+    console.log("setbanner click");
+    if (location === "home") {
+      bannerText = "Products Catalogue...";
+    } else if (location === "cart") {
+      bannerText = "Your Shopping Cart...";
+    } else {
+      bannerText = "Click Home or Cart ...";
+    }
+
+    setBannerText(bannerText);
+  };
 
   if (loading) {
     // react spinner
@@ -87,6 +99,7 @@ const Cats4Lyf = () => {
             blHandler={breedListHandler}
             breeds={breeds}
             setBreeds={setBreeds}
+            setBanner={setBannerHandler}
           />
           <Banner bannerText={bannerText} />
           <Switch>

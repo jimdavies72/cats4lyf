@@ -60,12 +60,18 @@ const MainNav = (props) => {
         <div className="nav-links">
           <Link to="/">
             <span>
-              <i className="fas fa-home"></i>
+              <i
+                onClick={() => props.setBanner("home")}
+                className="fas fa-home"
+              ></i>
             </span>
           </Link>
           <Link to="/cart">
             <span>
-              <i className="fas fa-shopping-cart"></i>
+              <i
+                onClick={() => props.setBanner("cart")}
+                className="fas fa-shopping-cart"
+              ></i>
             </span>
           </Link>
         </div>
