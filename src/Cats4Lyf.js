@@ -8,16 +8,16 @@ import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Banner from "./components/Banner";
 
-//import FadeLoader from "react-spinners/FadeLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 import faker from "faker";
 import catNames from "cat-names";
 
+//Main Functional Component
 const Cats4Lyf = () => {
+  const [loading, setLoading] = useState(false);
   const [catData, setCatData] = useState([]);
   const [basketData, setBasketData] = useState([]);
-  const [bannerText, setBannerText] = useState(
-    "Currently Trending Products..."
-  );
+  const [bannerText, setBannerText] = useState("");
   const [selectedBreed, setSelectedBreed] = useState("all");
   const [breeds, setBreeds] = useState([
     {
@@ -29,38 +29,18 @@ const Cats4Lyf = () => {
   const numProducts = 21;
 
   useEffect(() => {
-    breedsFetch();
+    setLoading(true);
     handleFetch(numProducts, selectedBreed);
   }, []);
-
-  const breedsFetch = async () => {
-    //creating a lookup table of breed id and name
-    const fetchString = "https://api.thecatapi.com/v1/breeds";
-
-    const response = await fetch(fetchString);
-    const data = await response.json();
-
-    // had a situation where on save would not clear out existing data and caused dupes which in turn caused console errors.
-    if (breeds.length <= 1) {
-      let tempObject = {};
-      let tempArray = [...breeds];
-      for (let i = 0; i < data.length; i++) {
-        tempObject = {
-          id: data[i].id,
-          name: data[i].name,
-        };
-        tempArray.push(tempObject);
-      }
-      setBreeds([...tempArray]);
-    }
-  };
 
   const handleFetch = async (numProducts, breedValue) => {
     let fetchString = "";
     if (breedValue === "all" || breedValue === "") {
       fetchString = `https://api.thecatapi.com/v1/images/search?limit=${numProducts}`;
+      setBannerText("Currently Trending Products...");
     } else {
       fetchString = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedValue}&limit=${numProducts}`;
+      setBannerText("Your search results...");
     }
 
     const response = await fetch(fetchString);
@@ -79,47 +59,59 @@ const Cats4Lyf = () => {
       data[i].productDescription = faker.commerce.productDescription();
     }
     setCatData(data);
+    setLoading(false);
   };
 
   const breedListHandler = () => {
     handleFetch(numProducts, selectedBreed);
   };
 
-  //TODO: Add in waiting for data spinner
-  //TODO: Make Banner Text dynamic between products and cart.
+  //TODO: Make Banner Text dynamic between products and cart. Not sure how I can do this?
 
-  return (
-    <div className="app-container">
-      <Router>
-        <MainNav
-          selectedBreed={selectedBreed}
-          setSelectedBreed={setSelectedBreed}
-          blHandler={breedListHandler}
-          breeds={breeds}
-        />
-        <Banner bannerText={bannerText} />
-        <Switch>
-          <Route exact path="/">
-            <Products
-              catData={catData}
-              setCatData={setCatData}
-              basketData={basketData}
-              setBasketData={setBasketData}
-            />
-          </Route>
-          <Route exact path="/cart">
-            <Cart
-              catData={catData}
-              setCatData={setCatData}
-              basketData={basketData}
-              setBasketData={setBasketData}
-            />
-          </Route>
-        </Switch>
-      </Router>
-      <Footer />
-    </div>
-  );
+  if (loading) {
+    // react spinner
+    return (
+      <div className="spinner">
+        <FadeLoader loading={true} color={"#0c9726"} />
+        <h3>Loading...</h3>
+      </div>
+    );
+  } else {
+    // render the data
+    return (
+      <div className="app-container">
+        <Router>
+          <MainNav
+            selectedBreed={selectedBreed}
+            setSelectedBreed={setSelectedBreed}
+            blHandler={breedListHandler}
+            breeds={breeds}
+            setBreeds={setBreeds}
+          />
+          <Banner bannerText={bannerText} />
+          <Switch>
+            <Route exact path="/">
+              <Products
+                catData={catData}
+                setCatData={setCatData}
+                basketData={basketData}
+                setBasketData={setBasketData}
+              />
+            </Route>
+            <Route exact path="/cart">
+              <Cart
+                catData={catData}
+                setCatData={setCatData}
+                basketData={basketData}
+                setBasketData={setBasketData}
+              />
+            </Route>
+          </Switch>
+        </Router>
+        <Footer />
+      </div>
+    );
+  }
 };
 
 export default Cats4Lyf;
