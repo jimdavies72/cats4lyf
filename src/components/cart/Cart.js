@@ -1,8 +1,7 @@
 import "./cart.css";
 
 import ProductCard from "../productCard/ProductCard";
-//import ProductCard from "./src/productCard/ProductCard";
-import OrderPanel from "./OrderPanel";
+import OrderPanel from "../orderPanel/OrderPanel";
 
 const Cart = (props) => {
   const removeFromBasketHandler = (index, cat) => {
