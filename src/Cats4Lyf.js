@@ -1,6 +1,6 @@
 import "./Cats4Lyf.css";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import MainNav from "./components/MainNav.js";
 import Products from "./components/Products";
