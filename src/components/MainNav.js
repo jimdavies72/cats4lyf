@@ -55,7 +55,9 @@ const MainNav = (props) => {
                 );
               })}
           </select>
-          <button onClick={() => props.blHandler()}>Search</button>
+          <span id="eyeglass">
+            <i onClick={() => props.blHandler()} className="fas fa-search"></i>
+          </span>
         </div>
         <div className="nav-links">
           <Link to="/">

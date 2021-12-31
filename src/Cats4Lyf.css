@@ -136,22 +136,9 @@ Cats4Lyf App
   margin-right: 20px;
 }
 
-.search-box button {
-  padding: 0.3em 1.2em;
-  border: 1px solid var(--col-black);
-  border-radius: 2em;
-  text-decoration: none;
-  font-family: var(--ff-secondary);
-  font-weight: bold;
-  color: var(--col-white);
-  background-color: var(--col-med-blue);
-  text-align: center;
-  box-shadow: var(--light-shadow);
-}
-
-.search-box button:hover {
-  cursor: pointer;
-  color: var(--col-red);
+#eyeglass {
+  font-size: 1.5rem;
+  color: var(--col-off-white);
 }
 
 .breed-select {
@@ -180,7 +167,8 @@ Cats4Lyf App
   box-shadow: var(--light-shadow);
 }
 
-.fas {
+.fa-home,
+.fa-shopping-cart {
   font-size: 2rem;
   margin-left: 10px;
   margin-right: 10px;
@@ -188,7 +176,7 @@ Cats4Lyf App
 
 .fas:hover {
   cursor: pointer;
-  color: #0c9726;
+  color: var(--col-orange-red);
 }
 
 /* Message Bar */
