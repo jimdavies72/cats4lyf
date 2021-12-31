@@ -1,0 +1,11 @@
+/* Banner /Message Bar */
+
+.msg-container {
+  width: 100%;
+}
+
+#message {
+  margin-left: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

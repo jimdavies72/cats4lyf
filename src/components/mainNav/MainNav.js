@@ -1,3 +1,5 @@
+import "./mainNav.css";
+
 // React Router version 5...
 import { Link } from "react-router-dom";
 import { useEffect } from "react";

@@ -1,3 +1,5 @@
+import "./addRemControls.css";
+
 const AddRemControls = (props) => {
   return (
     <div className="addrem-container">

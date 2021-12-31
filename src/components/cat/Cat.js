@@ -1,6 +1,9 @@
-import formatter from "../functions";
-
 const Cat = (props) => {
+  const formatter = new Intl.NumberFormat("en-UK", {
+    style: "currency",
+    currency: "GBP",
+  });
+
   const price = formatter.format(props.price);
 
   return (

@@ -1,4 +1,6 @@
-import ProductCard from "./ProductCard";
+import "./products.css";
+
+import ProductCard from "../productCard/ProductCard";
 
 const Products = (props) => {
   const addToBasketHandler = (cat, index) => {

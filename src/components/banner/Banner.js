@@ -1,3 +1,5 @@
+import "./banner.css";
+
 const Banner = (props) => {
   return (
     <div className="msg-container">

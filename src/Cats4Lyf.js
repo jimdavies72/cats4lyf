@@ -2,11 +2,11 @@ import "./Cats4Lyf.css";
 import { useEffect, useState } from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import MainNav from "./components/MainNav.js";
-import Products from "./components/Products";
-import Cart from "./components/Cart";
-import Footer from "./components/Footer";
-import Banner from "./components/Banner";
+import MainNav from "./components/mainNav/MainNav";
+import Products from "./components/products/Products";
+import Cart from "./components/cart/Cart";
+import Footer from "./components/footer/Footer";
+import Banner from "./components/banner/Banner";
 
 import FadeLoader from "react-spinners/FadeLoader";
 import faker from "faker";

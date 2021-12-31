@@ -1,4 +1,7 @@
-import ProductCard from "./ProductCard";
+import "./cart.css";
+
+import ProductCard from "../productCard/ProductCard";
+//import ProductCard from "./src/productCard/ProductCard";
 import OrderPanel from "./OrderPanel";
 
 const Cart = (props) => {

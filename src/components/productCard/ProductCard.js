@@ -1,5 +1,5 @@
-import Cat from "./Cat";
-import AddRemControls from "./AddRemControls";
+import Cat from "../cat/Cat";
+import AddRemControls from "../addRemControls/AddRemControls";
 
 const ProductCard = (props) => {
   return (

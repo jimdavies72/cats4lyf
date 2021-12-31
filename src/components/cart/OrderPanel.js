@@ -1,3 +1,5 @@
+import "./orderPanel.css";
+
 const OrderPanel = ({ basketData }) => {
   let totalValue = 0;
 

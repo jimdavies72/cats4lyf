@@ -1,0 +1,14 @@
+/* Footer */
+
+footer {
+  width: 100%;
+  height: 135px;
+  padding: 10px 10px;
+  background-color: darkblue;
+  box-shadow: var(--top-shadow);
+  overflow: none;
+}
+
+footer h3 {
+  color: var(--col-white);
+}
