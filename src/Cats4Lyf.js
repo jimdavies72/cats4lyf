@@ -1,6 +1,13 @@
 import "./Cats4Lyf.css";
 import { useEffect, useState } from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  useHistory,
+  withRouter,
+  useLocation,
+} from "react-router-dom";
 
 import MainNav from "./components/mainNav/MainNav";
 import Products from "./components/products/Products";
@@ -27,6 +34,8 @@ const Cats4Lyf = () => {
   ]);
 
   const numProducts = 21;
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
@@ -37,10 +46,10 @@ const Cats4Lyf = () => {
     let fetchString = "";
     if (breedValue === "all" || breedValue === "") {
       fetchString = `https://api.thecatapi.com/v1/images/search?limit=${numProducts}`;
-      setBannerText("Currently Trending Products...");
+      bannerHandler("load");
     } else {
       fetchString = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedValue}&limit=${numProducts}`;
-      setBannerText("Your search results...");
+      bannerHandler("results");
     }
 
     const response = await fetch(fetchString);
@@ -62,22 +71,59 @@ const Cats4Lyf = () => {
     setLoading(false);
   };
 
-  const breedListHandler = () => {
-    handleFetch(numProducts, selectedBreed);
+  //this sets the state of selectedBreed for the search button click.
+  const selectBreedHandler = (e) => {
+    setSelectedBreed(e.target.value);
   };
 
-  const setBannerHandler = (location) => {
+  // return products based on breed selected in search box
+  const breedListHandler = () => {
+    handleFetch(numProducts, selectedBreed);
+    // view home if clicked when in basket. ignore already home to stop console warning.
+    location.pathname != "/" && history.push("/");
+    bannerHandler("home");
+  };
+
+  // populates the Breeds state for the drop down list
+  const setBreedsHandler = (array) => {
+    setBreeds([...array]);
+  };
+
+  // handle the text that appears in th text banner (below the nav)
+  //TODO: convert to array to remove if statements. There is a bug if location is home and results.
+  const bannerHandler = (location) => {
     let bannerText = "";
-    console.log("setbanner click");
-    if (location === "home") {
+    if (location === "load") {
+      bannerText = "Currently Trending Products...";
+    } else if (location === "home") {
       bannerText = "Products Catalogue...";
     } else if (location === "cart") {
       bannerText = "Your Shopping Cart...";
+    } else if (location === "results") {
+      bannerText = "Your search results...";
     } else {
       bannerText = "Click Home or Cart ...";
     }
 
     setBannerText(bannerText);
+  };
+
+  const addToBasketHandler = (cat, index) => {
+    // add to basket
+    setBasketData([...basketData, cat]);
+    //remove from Products (catData)
+    let temp = [...catData];
+    temp.splice(index, 1);
+    setCatData([...temp]);
+  };
+
+  const removeFromBasketHandler = (index, cat) => {
+    // remove from Basket
+    let temp = [...basketData];
+    temp.splice(index, 1);
+    setBasketData([...temp]);
+    // add back to catData
+    setCatData([...catData, cat]);
   };
 
   if (loading) {
@@ -92,39 +138,33 @@ const Cats4Lyf = () => {
     // render the data
     return (
       <div className="app-container">
-        <Router>
-          <MainNav
-            selectedBreed={selectedBreed}
-            setSelectedBreed={setSelectedBreed}
-            blHandler={breedListHandler}
-            breeds={breeds}
-            setBreeds={setBreeds}
-            setBanner={setBannerHandler}
-          />
-          <Banner bannerText={bannerText} />
-          <Switch>
-            <Route exact path="/">
-              <Products
-                catData={catData}
-                setCatData={setCatData}
-                basketData={basketData}
-                setBasketData={setBasketData}
-              />
-            </Route>
-            <Route exact path="/cart">
-              <Cart
-                catData={catData}
-                setCatData={setCatData}
-                basketData={basketData}
-                setBasketData={setBasketData}
-              />
-            </Route>
-          </Switch>
-        </Router>
+        <MainNav
+          breeds={breeds}
+          setBreedsHandler={setBreedsHandler}
+          selectBreedHandler={selectBreedHandler}
+          breedListHandler={breedListHandler}
+          bannerHandler={bannerHandler}
+        />
+        <Banner bannerText={bannerText} />
+        <Switch>
+          <Route exact path="/">
+            <Products
+              catData={catData}
+              addToBasketHandler={addToBasketHandler}
+            />
+          </Route>
+          <Route exact path="/cart">
+            <Cart
+              catData={catData}
+              removeFromBasketHandler={removeFromBasketHandler}
+              basketData={basketData}
+            />
+          </Route>
+        </Switch>
         <Footer />
       </div>
     );
   }
 };
 
-export default Cats4Lyf;
+export default withRouter(Cats4Lyf);

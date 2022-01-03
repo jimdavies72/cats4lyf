@@ -4,15 +4,6 @@ import ProductCard from "../productCard/ProductCard";
 import OrderPanel from "../orderPanel/OrderPanel";
 
 const Cart = (props) => {
-  const removeFromBasketHandler = (index, cat) => {
-    // remove from Basket
-    let temp = [...props.basketData];
-    temp.splice(index, 1);
-    props.setBasketData([...temp]);
-    // add back to catData
-    props.setCatData([...props.catData, cat]);
-  };
-
   return (
     <div className="cart-container">
       <div className="cart-items">
@@ -27,7 +18,7 @@ const Cart = (props) => {
                   breed={cat.breed}
                   productName={cat.productName}
                   productDescription={cat.productDescription}
-                  removeMe={() => removeFromBasketHandler(index, cat)}
+                  removeMe={() => props.removeFromBasketHandler(index, cat)}
                 />
               </div>
             );

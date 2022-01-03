@@ -10,7 +10,7 @@ const OrderPanel = ({ basketData }) => {
 
   let basketMsg = "Your basket...";
   if (basketData.length === 0) {
-    basketMsg = "You basket is empty...";
+    basketMsg = "Your basket is empty...";
   }
 
   return (

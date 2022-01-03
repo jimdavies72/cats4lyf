@@ -1,6 +1,5 @@
 import "./mainNav.css";
 
-// React Router version 5...
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -9,12 +8,8 @@ const MainNav = (props) => {
     breedsFetch();
   }, []);
 
-  const selectBreed = (e) => {
-    props.setSelectedBreed(e.target.value);
-  };
-
   const breedsFetch = async () => {
-    //creating a lookup table of breed id and name
+    // creating a lookup table of breed id and name
     const fetchString = "https://api.thecatapi.com/v1/breeds";
 
     const response = await fetch(fetchString);
@@ -31,7 +26,7 @@ const MainNav = (props) => {
         };
         tempArray.push(tempObject);
       }
-      props.setBreeds([...tempArray]);
+      props.setBreedsHandler(tempArray);
     }
   };
 
@@ -39,14 +34,14 @@ const MainNav = (props) => {
     <>
       <div className="nav-bar">
         <Link to="/">
-          <h1 className="logo">cats-4-lyf.co.uk</h1>
+          <h1 className="logo">cats4lyf.co.uk</h1>
         </Link>
         <div className="search-box">
           <select
             className="breed-select"
             id="breeds"
             name="breeds"
-            onChange={selectBreed}
+            onChange={(e) => props.selectBreedHandler(e)}
           >
             {props.breeds.length > 0 &&
               props.breeds.map((breed) => {
@@ -58,14 +53,17 @@ const MainNav = (props) => {
               })}
           </select>
           <span id="eyeglass">
-            <i onClick={() => props.blHandler()} className="fas fa-search"></i>
+            <i
+              onClick={() => props.breedListHandler()}
+              className="fas fa-search"
+            ></i>
           </span>
         </div>
         <div className="nav-links">
           <Link to="/">
             <span>
               <i
-                onClick={() => props.setBanner("home")}
+                onClick={() => props.bannerHandler("home")}
                 className="fas fa-home"
               ></i>
             </span>
@@ -73,7 +71,7 @@ const MainNav = (props) => {
           <Link to="/cart">
             <span>
               <i
-                onClick={() => props.setBanner("cart")}
+                onClick={() => props.bannerHandler("cart")}
                 className="fas fa-shopping-cart"
               ></i>
             </span>

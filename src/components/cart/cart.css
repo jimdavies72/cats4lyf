@@ -26,11 +26,11 @@
 -------------
 Media Queries
 -------------
+
 */
 
 @media screen and (max-width: 1308px) {
   .cart-container {
-    width: 90%;
     flex-direction: column-reverse;
   }
 
@@ -38,5 +38,11 @@ Media Queries
     width: 95%;
     min-width: none;
     margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .cart-container {
+    width: 90%;
   }
 }
