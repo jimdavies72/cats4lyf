@@ -34,7 +34,7 @@ const MainNav = (props) => {
     <>
       <div className="nav-bar">
         <Link to="/">
-          <h1 className="logo">cats4lyf.co.uk</h1>
+          <h1 className="logo">cats-4-lyf.co.uk</h1>
         </Link>
         <div className="search-box">
           <select

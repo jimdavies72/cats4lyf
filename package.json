@@ -1,7 +1,7 @@
 {
   "homepage": "https://jimdavies72.github.io/cats4lyf",
   "name": "cats4lfy",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
