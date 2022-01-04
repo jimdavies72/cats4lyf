@@ -8,6 +8,8 @@ font-family: 'Montserrat', sans-serif;
 font-family: 'Nunito Sans', sans-serif;
 font-family: 'Nunito Sans', sans-serif;
 font-family: 'MEOWZA', sans-serif;
+font-family: 'Quicksand', sans-serif;
+
 
 */
 
@@ -16,6 +18,8 @@ font-family: 'MEOWZA', sans-serif;
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:ital@1&family=Nunito+Sans&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
 /* 
 -------
@@ -37,7 +41,7 @@ html {
 
 :root {
   --ff-logo: "MEOWZA", sans-serif;
-  --ff-primary: "Montserrat", sans-serif;
+  --ff-primary: "Quicksand", sans-serif;
   --ff-secondary: "Abel", sans-serif;
   --ff-tertiary: "Nunito Sans", sans-serif;
   --col-white: white;

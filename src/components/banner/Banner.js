@@ -3,7 +3,7 @@ import "./banner.css";
 const Banner = (props) => {
   return (
     <div className="msg-container">
-      <h2 id="message">{props.bannerText}</h2>
+      <h3 id="message">{props.bannerText}</h3>
     </div>
   );
 };

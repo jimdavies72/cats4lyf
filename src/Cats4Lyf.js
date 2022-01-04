@@ -1,7 +1,6 @@
 import "./Cats4Lyf.css";
 import { useEffect, useState } from "react";
 import {
-  HashRouter as Router,
   Switch,
   Route,
   useHistory,
@@ -33,6 +32,28 @@ const Cats4Lyf = () => {
     },
   ]);
 
+  const bannerTextArray = [
+    {
+      id: "default",
+      text: "Please click Home or Cart... ",
+    },
+    {
+      id: "load",
+      text: "Currently Trending Products...",
+    },
+    {
+      id: "home",
+      text: "Products Catalogue...",
+    },
+    {
+      id: "cart",
+      text: "Your Shopping Cart...",
+    },
+    {
+      id: "results",
+      text: "Your search results...",
+    },
+  ];
   const numProducts = 21;
   const history = useHistory();
   const location = useLocation();
@@ -80,7 +101,7 @@ const Cats4Lyf = () => {
   const breedListHandler = () => {
     handleFetch(numProducts, selectedBreed);
     // view home if clicked when in basket. ignore already home to stop console warning.
-    location.pathname != "/" && history.push("/");
+    location.pathname !== "/" && history.push("/");
     bannerHandler("home");
   };
 
@@ -90,22 +111,10 @@ const Cats4Lyf = () => {
   };
 
   // handle the text that appears in th text banner (below the nav)
-  //TODO: convert to array to remove if statements. There is a bug if location is home and results.
-  const bannerHandler = (location) => {
-    let bannerText = "";
-    if (location === "load") {
-      bannerText = "Currently Trending Products...";
-    } else if (location === "home") {
-      bannerText = "Products Catalogue...";
-    } else if (location === "cart") {
-      bannerText = "Your Shopping Cart...";
-    } else if (location === "results") {
-      bannerText = "Your search results...";
-    } else {
-      bannerText = "Click Home or Cart ...";
-    }
-
-    setBannerText(bannerText);
+  // TODO: this needs work to handle display order conflicts.
+  const bannerHandler = (id) => {
+    const obj = bannerTextArray.find((obj) => obj.id === id);
+    setBannerText(obj.text);
   };
 
   const addToBasketHandler = (cat, index) => {
@@ -126,8 +135,8 @@ const Cats4Lyf = () => {
     setCatData([...catData, cat]);
   };
 
+  // react spinner
   if (loading) {
-    // react spinner
     return (
       <div className="spinner">
         <FadeLoader loading={true} color={"#0c9726"} />
