@@ -29,8 +29,10 @@ const MainNav = (props) => {
         }
         props.setBreedsHandler(tempArray);
       }
-    } catch {
-      props.bannerHandler("error");
+    } catch (err) {
+      //TODO: understand why props.bannerHandler here, causes the app to crash? For now, console.log().
+      //props.bannerHandler("error");
+      console.log(err);
     }
   };
 
