@@ -53,6 +53,10 @@ const Cats4Lyf = () => {
       id: "results",
       text: "Your search results...",
     },
+    {
+      id: "error",
+      text: "An error has occured. try refreshing your browser or try again in a few mintues",
+    },
   ];
   const numProducts = 21;
   const history = useHistory();
@@ -64,32 +68,37 @@ const Cats4Lyf = () => {
   }, []);
 
   const handleFetch = async (numProducts, breedValue) => {
-    let fetchString = "";
-    if (breedValue === "all" || breedValue === "") {
-      fetchString = `https://api.thecatapi.com/v1/images/search?limit=${numProducts}`;
-      bannerHandler("load");
-    } else {
-      fetchString = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedValue}&limit=${numProducts}`;
-      bannerHandler("results");
-    }
-
-    const response = await fetch(fetchString);
-    const data = await response.json();
-
-    // add in data from other apis to data object
-    for (let i = 0; i < data.length; i++) {
-      data[i].price = faker.commerce.price();
-      if (breedValue === "all") {
-        data[i].breed = faker.animal.cat();
+    try {
+      let fetchString = "";
+      if (breedValue === "all" || breedValue === "") {
+        fetchString = `https://api.thecatapi.com/v1/images/search?limit=${numProducts}`;
+        bannerHandler("load");
       } else {
-        const obj = breeds.find((obj) => obj.id === breedValue);
-        data[i].breed = obj.name;
+        fetchString = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedValue}&limit=${numProducts}`;
+        bannerHandler("results");
       }
-      data[i].productName = catNames.random();
-      data[i].productDescription = faker.commerce.productDescription();
+
+      const response = await fetch(fetchString);
+      const data = await response.json();
+
+      // add in data from other apis to data object
+      for (let i = 0; i < data.length; i++) {
+        data[i].price = faker.commerce.price();
+        if (breedValue === "all") {
+          data[i].breed = faker.animal.cat();
+        } else {
+          const obj = breeds.find((obj) => obj.id === breedValue);
+          data[i].breed = obj.name;
+        }
+        data[i].productName = catNames.random();
+        data[i].productDescription = faker.commerce.productDescription();
+      }
+      setCatData(data);
+      setLoading(false);
+    } catch {
+      bannerHandler("error");
+      setLoading(false);
     }
-    setCatData(data);
-    setLoading(false);
   };
 
   //this sets the state of selectedBreed for the search button click.
